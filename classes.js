@@ -27,23 +27,21 @@
       - Example: "Dave Smith Widget"
 
   Call your class Employee and receive all the data in the constructor in the order listed above.*/
-  
-  class Employee {
-    constructor(first_name,last_name,email,age){
-      this.first_name = first_name
-      this.last_name = last_name
-      this.email = email
-      this.age = age
-      
-      }
-      makeWidget(){
-        return first_name + this.last_name + `Widget`
-      }
-    }
-  
 
-  
+class Employee {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
+    this.age = age;
+  }
+  makeWidget() {
+    return first_name + this.last_name + `Widget`;
+  }
+}
 
+let dave = new Employee("Dave", "Smith");
+dave.makeWidget();
 
 ////////// PROBLEM 2 //////////
 
@@ -59,21 +57,20 @@
 
   Call your new class Manager
 */
-class Manager extends Employee{
-constructor(first_name,last_name,email,age){
-  super(first_name,last_name,email,age)
-  this.reports = []
-} 
-hire(employee){
-  return this.reports.push(employee)
+class Manager extends Employee {
+  constructor(first_name, last_name, email, age) {
+    super(first_name, last_name, email, age);
+    this.reports = [];
+  }
+  hire(employee) {
+    return this.reports.push(employee);
+  }
+  fire(index) {
+    return this.reports.splice(index, 1);
+  }
 }
-fire(index){
-  return this.reports.splice(index,1)
-}
-}
-  
-//Code Here
 
+//Code Here
 
 ////////// PROBLEM 3 //////////
 
@@ -96,49 +93,41 @@ fire(index){
   Call your new class ProgressiveManager
 */
 
-class ProgressiveManager extends Manager{
-  constructor(first_name,last_name,email,age,reports,fire){
-    super(first_name,last_name,email,age,reports,fire)
-    this.title = 'Not a manager'
-    this.bonus = 0
+class ProgressiveManager extends Manager {
+  constructor(first_name, last_name, email, age, reports, fire) {
+    super(first_name, last_name, email, age, reports, fire);
+    this.title = "Not a manager";
+    this.bonus = 0;
   }
-hire(employee){
-  super.hire(employee)
-if (0 == this.reports.length){
-  this.title = 'Not a manager'
-} else if (this.reports.length <= 3){
-this.title = 'Barely Manager'
-}else if ( this.reports.length <= 10){
-this.title = 'Mostly Manager'
 
-} else if ( this.reports.length <= 50){
-  this.title = 'Manager'
-} else if ( this.reports.length <= 100){
-  this.title = 'Manager Plus'
-} else {
-  this.title = 'Bestest Manager'
-}
-}
-fire(index){
-  super.fire(index)
-  if (0 == this.reports.length){
-    this.title = 'Not a manager'
-  } else if (this.reports.length <= 3){
-  this.title = 'Barely Manager'
-  }else if ( this.reports.length <= 10){
-  this.title = 'Mostly Manager'
-  
-  } else if ( this.reports.length <= 50){
-    this.title = 'Manager'
-  } else if ( this.reports.length <= 100){
-    this.title = 'Manager Plus'
-  } else {
-    this.title = 'Bestest Manager'
-  } this.bonus = 100 + this.bonus
-}
-}
+  hire(employee) {
+    this.reports.push(employee);
+    this.setTitle();
+  }
 
+  fire(index) {
+    this.reports.splice(index, 1);
+    this.bonus += 100;
+    this.setTitle();
+  }
 
+  setTitle() {
+    super.hire(employee);
+    if (0 === this.reports.length) {
+      this.title = "Not a manager";
+    } else if (this.reports.length >= 1 && this.reports.length <= 3) {
+      this.title = "Barely Manager";
+    } else if (this.reports.length >= 4 && this.reports.length <= 10) {
+      this.title = "Mostly Manager";
+    } else if (this.reports.length >= 11 && this.reports.length <= 50) {
+      this.title = "Manager";
+    } else if (this.reports.length >= 51 && this.reports.length <= 100) {
+      this.title = "Manager Plus";
+    } else {
+      this.title = "Bestest Manager";
+    }
+  }
+}
 
 ////////// PROBLEM 4 - Black Diamond //////////
 
@@ -164,16 +153,14 @@ fire(index){
 */
 
 class Machine {
-  constructor(widgets_made_count,wear_and_tear_count,needs_reboot){
-  this.widgets_made_count = 0
-  this.wear_and_tear_count = 0
-  this.needs_reboot = false
+  constructor(widgets_made_count, wear_and_tear_count, needs_reboot) {
+    this.widgets_made_count = 0;
+    this.wear_and_tear_count = 0;
+    this.needs_reboot = false;
+  }
+  makeWidgets(num) {
+    this.widgets_made_count = this.widgets_made_count + num;
+    this.wear_and_tear_count = this.widgets_made_count / 50;
+  }
+  fix;
 }
-makeWidgets(num){
-  this.widgets_made_count = this.widgets_made_count + num
- this.wear_and_tear_count  = this.widgets_made_count/50
-}
-fix
-}
-
-
